@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLX Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: #fafafa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .signup-container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .olx-logo {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .welcome {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .signup-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .input-group {
+            margin-bottom: 16px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #cbb89d;
+            border-radius: 6px;
+            font-size: 15px;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .input-group input:focus {
+            border-color: #6c3eb6;
+        }
+        .input-group.password {
+            position: relative;
+        }
+        .input-group .toggle-password {
+            position: absolute;
+            right: -15px;
+            top: 70%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #888;
+            font-size: 16px;
+            padding: 0;
+            height: 24px;
+            display: flex;
+            align-items: center;
+        }
+        .signup-btn {
+            width: 100%;
+            background: #23e5db;
+            color: #002f34;
+            border: none;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 16px;
+            transition: background 0.2s;
+        }
+        .signup-btn:hover {
+            background: #1ac7c2;
+        }
+        .or {
+            text-align: center;
+            color: #888;
+            margin: 16px 0 12px 0;
+            font-size: 14px;
+        }
+        .social-btns {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 0;
+            border: 1.5px solid #cbb89d;
+            border-radius: 6px;
+            background: #fff;
+            color: #333;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .social-btn.facebook {
+            background: #cbb89d;
+            color: #fff;
+        }
+        .social-btn.google i { color: #ea4335; }
+        .social-btn.facebook i { color: #fff; }
+        .social-btn.apple i { color: #333; }
+        .terms {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .terms a {
+            color: #6c3eb6;
+            text-decoration: underline;
+        }
+        .login-link {
+            text-align: center;
+            font-size: 15px;
+            margin-top: 8px;
+        }
+        .login-link a {
+            color: #6c3eb6;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <form class="signup-form">
+            <form class="signup-form" style="width:100%;box-sizing:border-box;">
+            <div class="olx-logo"><span style="color:#002f34">O</span><span style="color:#23e5db">L</span><span style="color:#f9b233">X</span></div>
+            <div class="welcome">Create your account</div>
+            <div class="signup-title">Sign Up</div>
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9]*" inputmode="numeric" required>
+            </div>
+            <div class="input-group password">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="button" class="toggle-password" tabindex="-1"><i class="fas fa-eye"></i></button>
+            </div>
+                <button type="submit" class="signup-btn">Sign Up</button> 
+                <style>
+                    .signup-btn {
+                        width: 100%;
+                        background: #23e5db;
+                        color: #002f34;
+                        border: none;
+                        padding: 12px 0;
+                        border-radius: 8px;
+                        font-size: 17px;
+                        font-weight: 700;
+                        cursor: pointer;
+                        margin-bottom: 16px;
+                        transition: background 0.2s;
+                        box-sizing: border-box;
+                        display: block;
+                    }
+                </style>
+            <div class="or">OR</div>
+            <div class="social-btns">
+                <button type="button" class="social-btn google"><i class="fab fa-google"></i>Google</button>
+                <button type="button" class="social-btn facebook"><i class="fab fa-facebook-f"></i>Facebook</button>
+                <button type="button" class="social-btn apple"><i class="fab fa-apple"></i>Apple</button>
+            </div>
+            <div class="terms">By signing up, you agree to our <a href="#">Terms &amp; conditions</a> | <a href="#">Privacy</a></div>
+            <div class="login-link">Already have an account? <a href="login.html">Login</a></div>
+        </form>
+    </div>
+    <script>
+        // Toggle password visibility
+        document.querySelectorAll('.toggle-password').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const input = this.previousElementSibling;
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                } else {
+                    input.type = 'password';
+                    this.innerHTML = '<i class="fas fa-eye"></i>';
+                }
+            });
+        });
+
+        // Phone number: only allow digits
+        document.getElementById('phone').addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '');
+        });
+
+        // Password requirements on submit
+        document.querySelector('.signup-form').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            // At least 8 chars, no spaces, at least one letter
+            const valid = password.length >= 8 && !/\s/.test(password) && /[A-Za-z]/.test(password);
+            if (!valid) {
+                alert('Password must be at least 8 characters, contain at least one letter, and have no spaces.');
+                e.preventDefault();
+            }
+        });
+
+        // Social login buttons - show alert (requires backend OAuth setup for real functionality)
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const provider = this.classList.contains('google') ? 'Google' : 
+                                 this.classList.contains('facebook') ? 'Facebook' : 'Apple';
+                alert(provider + ' login requires OAuth backend integration. This is a demo button.');
+            });
+        });
+    </script>
+</body>
+</html>

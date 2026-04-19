@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLX - Buy and Sell</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #002f34;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-text {
+            font-size: 36px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+
+        .logo-text span {
+            color: #23e5db;
+        }
+
+        /* Location Selector */
+        .location-selector {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .location-selector:hover {
+            border-color: #23e5db;
+        }
+
+        .location-selector i {
+            color: #002f34;
+            margin-right: 8px;
+        }
+
+        .location-selector span {
+            color: #002f34;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Search Bar */
+        .search-container {
+            flex: 0.8;
+            display: flex;
+            min-width: 250px;
+            gap: 18px;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            display: flex;
+            background-color: #fff;
+            border-radius: 4px 0 0 4px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #8a8a8a;
+        }
+
+        .search-button {
+            background-color: #002f34;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+
+        .search-button:hover {
+            background-color: #00484f;
+        }
+
+        /* Camera Button */
+        .camera-btn {
+            background-color: transparent;
+            border: 2px solid #23e5db;
+            color: #23e5db;
+            padding: 12px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .camera-btn:hover {
+            background-color: #23e5db;
+            color: #002f34;
+        }
+
+        /* Sell Button */
+        .sell-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #23e5db;
+            color: #002f34;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .sell-btn:hover {
+            background-color: #1ac7c2;
+            transform: scale(1.02);
+        }
+
+        .sell-btn i {
+            font-size: 12px;
+        }
+
+        /* Login Button */
+        .login-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .login-btn:hover {
+            background-color: #fff;
+            color: #002f34;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 8px;
+        }
+
+        .lang-selector:hover {
+            color: #23e5db;
+        }
+
+        /* Profile Button */
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            padding: 8px;
+            cursor: pointer;
+            transition: color 0.2s;
+            text-decoration: none;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .profile-btn:hover {
+            background-color: #fff;
+            color: #002f34;
+        }
+
+        /* Cart Button */
+        .cart-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .cart-btn:hover {
+            background-color: #fff;
+            color: #002f34;
+        }
+
+        .cart-btn:hover .cart-count {
+            background-color: #23e5db;
+            color: #002f34;
+        }
+
+        .cart-btn .cart-count {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background-color: #23e5db;
+            color: #002f34;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 8px;
+            min-width: 14px;
+            text-align: center;
+        }
+
+        /* Header Right Section */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Header Actions (Language) */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 15px;
+                gap: 10px;
+            }
+
+            .logo-text {
+                font-size: 28px;
+            }
+
+            .location-selector span {
+                display: none;
+            }
+
+            .search-container {
+                order: 3;
+                flex-basis: 100%;
+                min-width: 100%;
+            }
+
+            .camera-btn {
+                display: flex;
+            }
+
+            .header-right {
+                gap: 5px;
+            }
+
+            .sell-btn {
+                padding: 8px 12px;
+            }
+
+            .sell-btn span {
+                display: none;
+            }
+
+            .login-btn {
+                padding: 8px 10px;
+            }
+
+            .login-btn span {
+                display: none;
+            }
+
+            .header-actions {
+                gap: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <!-- Logo -->
+        <div class="logo">
+            <div class="logo-text">OL<span>X</span></div>
+        </div>
+
+        <!-- Location Selector -->
+        <div class="location-selector">
+            <i class="fas fa-search-location"></i>
+            <span>India</span>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-input-wrapper">
+                <input type="text" class="search-input" placeholder="Search for cars, phones, furniture, jobs and more...">
+            </div>
+            <button class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="camera-btn" title="Search with image">
+                <i class="fas fa-camera"></i>
+            </button>
+            <button class="cart-btn" title="Cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </button>
+        </div>
+
+        <!-- Right Section -->
+        <div class="header-right">
+            <!-- Sell Button -->
+            <button class="sell-btn">
+                <i class="fas fa-plus"></i>
+                <span>Sell</span>
+            </button>
+
+            <!-- Login Button -->
+            <a href="login.html" class="login-btn">
+                <i class="fas fa-user"></i>
+                <span>Login</span>
+            </a>
+
+            <!-- Profile Button -->
+            <div class="header-actions">
+                <a href="profile.html" class="profile-btn" title="Profile">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- Main Menu -->
+    <nav class="main-menu" style="display:flex;justify-content:center;gap:36px;background:#fff;padding:18px 0 0 0;box-shadow:0 2px 8px rgba(0,0,0,0.03);">
+        <a href="products.html" style="color:#222;text-decoration:none;font-size:1.1rem;font-weight:500;padding:8px 18px;border-radius:6px 6px 0 0;transition:background 0.2s;">My Orders</a>
+        <a href="products.html" style="color:#222;text-decoration:none;font-size:1.1rem;font-weight:500;padding:8px 18px;border-radius:6px 6px 0 0;transition:background 0.2s;">Sell</a>
+        <a href="#" style="color:#222;text-decoration:none;font-size:1.1rem;font-weight:500;padding:8px 18px;border-radius:6px 6px 0 0;transition:background 0.2s;">Customer Support</a>
+        <a href="products.html" style="color:#222;text-decoration:none;font-size:1.1rem;font-weight:500;padding:8px 18px;border-radius:6px 6px 0 0;transition:background 0.2s;">Wishlist</a>
+        <a href="products.html" style="color:#222;text-decoration:none;font-size:1.1rem;font-weight:500;padding:8px 18px;border-radius:6px 6px 0 0;transition:background 0.2s;">Offers</a>
+        <a href="second-page.html" style="color:#3a77ff;text-decoration:none;font-size:1.1rem;font-weight:500;padding:8px 18px;border-radius:6px 6px 0 0;transition:background 0.2s;">Browse More</a>
+    </nav>
+    <!-- Categories -->
+    <div class="categories" style="display:flex;justify-content:center;gap:36px;margin:36px 0 24px 0;flex-wrap:wrap;">
+        <a href="products.html" class="category" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;animation-delay:0.05s;text-decoration:none;color:inherit;">
+            <img src="tv.webp" alt="Electronics" style="width:84px;height:84px;object-fit:cover;background:#fff;border-radius:50%;padding:10px;box-shadow:0 2px 8px rgba(58,119,255,0.07);margin-bottom:6px;">
+            <span style="font-size:1rem;font-weight:500;">Electronics</span>
+        </a>
+        <a href="products.html" class="category" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;animation-delay:0.1s;text-decoration:none;color:inherit;">
+            <img src="cra.avif" alt="Vehicles" style="width:84px;height:84px;object-fit:cover;background:#fff;border-radius:50%;padding:10px;box-shadow:0 2px 8px rgba(58,119,255,0.07);margin-bottom:6px;">
+            <span style="font-size:1rem;font-weight:500;">Vehicles</span>
+        </a>
+        <a href="products.html" class="category" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;animation-delay:0.15s;text-decoration:none;color:inherit;">
+            <img src="furniture.webp" alt="Furniture" style="width:84px;height:84px;object-fit:cover;background:#fff;border-radius:50%;padding:10px;box-shadow:0 2px 8px rgba(58,119,255,0.07);margin-bottom:6px;">
+            <span style="font-size:1rem;font-weight:500;">Furniture</span>
+        </a>
+        <a href="products.html" class="category" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;animation-delay:0.2s;text-decoration:none;color:inherit;">
+            <img src="clothes.jpg" alt="Fashion" style="width:84px;height:84px;object-fit:cover;background:#fff;border-radius:50%;padding:10px;box-shadow:0 2px 8px rgba(58,119,255,0.07);margin-bottom:6px;">
+            <span style="font-size:1rem;font-weight:500;">Fashion</span>
+        </a>
+        <a href="products.html" class="category" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;animation-delay:0.25s;text-decoration:none;color:inherit;">
+            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=150&h=150&fit=crop" alt="Home & Garden" style="width:84px;height:84px;object-fit:cover;background:#fff;border-radius:50%;padding:10px;box-shadow:0 2px 8px rgba(58,119,255,0.07);margin-bottom:6px;">
+            <span style="font-size:1rem;font-weight:500;">Home &amp; Garden</span>
+        </a>
+        <a href="products.html" class="category" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;animation-delay:0.3s;text-decoration:none;color:inherit;">
+            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=150&h=150&fit=crop" alt="Sports" style="width:84px;height:84px;object-fit:cover;background:#fff;border-radius:50%;padding:10px;box-shadow:0 2px 8px rgba(58,119,255,0.07);margin-bottom:6px;">
+            <span style="font-size:1rem;font-weight:500;">Sports</span>
+        </a>
+        <a href="products.html" class="category" style="display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;animation:popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) both;animation-delay:0.35s;text-decoration:none;color:inherit;">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=150&h=150&fit=crop" alt="Real Estate" style="width:84px;height:84px;object-fit:cover;background:#fff;border-radius:50%;padding:10px;box-shadow:0 2px 8px rgba(58,119,255,0.07);margin-bottom:6px;">
+            <span style="font-size:1rem;font-weight:500;">Real Estate</span>
+        </a>
+    </div>
+    <!-- Deals Section -->
+    <div class="deals-section" style="display:flex;justify-content:center;align-items:flex-start;gap:48px;margin:32px 0 0 0;flex-wrap:wrap;">
+        <a href="product-detail.html" class="deal-card" style="background:#fff;border-radius:50%;width:340px;height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(58,119,255,0.07);position:relative;animation:fadeInUp 1s cubic-bezier(.68,-0.55,.27,1.55) both;animation-delay:0.1s;text-decoration:none;color:inherit;">
+            <img src="iphone.webp" alt="Phone & Console" style="width:240px;height:240px;object-fit:cover;border-radius:50%;">
+            <div class="deal-price" style="position:absolute;bottom:24px;left:24px;background:#f9b233;color:#fff;font-weight:bold;padding:8px 18px;border-radius:18px;font-size:1.1rem;box-shadow:0 2px 8px rgba(249,178,51,0.13);">Great Deal!<br>₹45,999</div>
+        </a>
+        <div class="deals-center" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:260px;margin:0 18px;">
+            <h2 style="font-size:1.5rem;color:#002f34;margin-bottom:18px;font-weight:700;">Featured Categories</h2>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+                <a href="products.html" style="background:#fff;padding:15px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.05);text-align:center;cursor:pointer;transition:transform 0.2s;text-decoration:none;color:inherit;display:block;"><i class="fa-solid fa-mobile" style="font-size:1.5rem;color:#3a77ff;margin-bottom:8px;"></i><div style="font-size:0.9rem;font-weight:600;color:#333;">Mobiles</div></a>
+                <a href="products.html" style="background:#fff;padding:15px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.05);text-align:center;cursor:pointer;transition:transform 0.2s;text-decoration:none;color:inherit;display:block;"><i class="fa-solid fa-laptop" style="font-size:1.5rem;color:#3a77ff;margin-bottom:8px;"></i><div style="font-size:0.9rem;font-weight:600;color:#333;">Electronics</div></a>
+                <a href="products.html" style="background:#fff;padding:15px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.05);text-align:center;cursor:pointer;transition:transform 0.2s;text-decoration:none;color:inherit;display:block;"><i class="fa-solid fa-car" style="font-size:1.5rem;color:#3a77ff;margin-bottom:8px;"></i><div style="font-size:0.9rem;font-weight:600;color:#333;">Cars</div></a>
+                <a href="products.html" style="background:#fff;padding:15px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.05);text-align:center;cursor:pointer;transition:transform 0.2s;text-decoration:none;color:inherit;display:block;"><i class="fa-solid fa-couch" style="font-size:1.5rem;color:#3a77ff;margin-bottom:8px;"></i><div style="font-size:0.9rem;font-weight:600;color:#333;">Furniture</div></a>
+            </div>
+            <a href="products.html" style="margin-top:20px;padding:12px 30px;background:#002f34;color:#fff;border:none;border-radius:24px;font-size:1rem;font-weight:600;cursor:pointer;transition:background 0.2s;text-decoration:none;display:inline-block;">View All Categories</a>
+        </div>
+        <a href="product-detail.html" class="deal-card" style="background:#fff;border-radius:50%;width:340px;height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(58,119,255,0.07);position:relative;animation:fadeInUp 1s cubic-bezier(.68,-0.55,.27,1.55) both;animation-delay:0.2s;text-decoration:none;color:inherit;">
+            <img src="CrtPtZAGFRgNrbFP7waPc9-removebg-preview.png" alt="Bed & Car" style="width:280px;height:280px;object-fit:contain;background:transparent;">
+            <div class="deal-price" style="position:absolute;bottom:24px;left:24px;background:#f9b233;color:#fff;font-weight:bold;padding:8px 18px;border-radius:18px;font-size:1.1rem;box-shadow:0 2px 8px rgba(249,178,51,0.13);">Great Deal!<br>₹30,000</div>
+        </a>
+    </div>
+    <style>
+    @keyframes popIn {
+        0% { opacity: 0; transform: scale(0.7) translateY(40px); }
+        100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(60px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    /* Hover Animations */
+    .category img {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .category:hover img {
+        transform: scale(1.15) rotate(5deg);
+        box-shadow: 0 8px 24px rgba(58,119,255,0.2);
+    }
+    .category {
+        transition: transform 0.3s ease;
+    }
+    .category:hover {
+        transform: translateY(-5px);
+    }
+    .deal-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .deal-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 40px rgba(58,119,255,0.15);
+    }
+    .deal-card img {
+        transition: transform 0.3s ease;
+    }
+    .deal-card:hover img {
+        transform: scale(1.1);
+    }
+    .main-menu a {
+        transition: all 0.3s ease;
+    }
+    .main-menu a:hover {
+        color: #3a77ff;
+        background: #e0eafc;
+    }
+    </style>
+</body>
+</html>
