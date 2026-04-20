@@ -6,273 +6,284 @@
     <title>OLX Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            background: #fafafa;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(circle at top left, rgba(35, 229, 219, 0.2), transparent 24%),
+                linear-gradient(180deg, #f7fbfb 0%, #fafafa 100%);
+            padding: 20px;
         }
+
         .login-container {
+            width: min(100%, 430px);
             background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-            padding: 40px 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 400px;
-            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 18px 50px rgba(0, 47, 52, 0.1);
+            padding: 34px 30px;
         }
-        .login-form {
-            flex: 1;
-            min-width: 320px;
-        }
+
         .olx-logo {
             font-size: 40px;
             font-weight: 900;
             letter-spacing: -2px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             text-align: center;
         }
+
         .welcome {
+            text-align: center;
             font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 18px;
+            font-weight: 700;
+            margin-bottom: 22px;
+            color: #002f34;
         }
+
         .tab-group {
-            display: flex;
-            margin-bottom: 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
         }
+
         .tab {
-            flex: 1;
-            padding: 10px 0;
-            border: none;
-            background: #f5f5f5;
-            color: #333;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 20px 20px 0 0;
-            cursor: pointer;
-            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 0;
+            border-radius: 999px;
+            font-weight: 700;
+            background: #f1f5f5;
+            color: #002f34;
         }
+
         .tab.active {
-            background: #cbb89d;
+            background: #002f34;
             color: #fff;
         }
+
         .login-title {
             font-size: 20px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            color: #002f34;
         }
+
         .input-group {
             margin-bottom: 16px;
         }
+
         .input-group label {
             display: block;
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 6px;
         }
+
         .input-group input {
             width: 100%;
             padding: 12px 14px;
-            border: 1.5px solid #cbb89d;
-            border-radius: 6px;
+            border: 1.5px solid #cad7da;
+            border-radius: 10px;
             font-size: 15px;
             outline: none;
-            transition: border 0.2s;
         }
+
         .input-group input:focus {
-            border-color: #6c3eb6;
+            border-color: #23e5db;
         }
+
         .input-group.password {
             position: relative;
         }
-        .input-group .toggle-password {
+
+        .toggle-password {
             position: absolute;
-            right: -15px;
-            top: 70%;
-            transform: translateY(-50%);
-            background: none;
+            right: 12px;
+            top: 39px;
             border: none;
+            background: none;
             cursor: pointer;
-            color: #888;
-            font-size: 16px;
-            padding: 0;
-            height: 14px;
-            display: flex;
-            align-items: center;
+            color: #66797b;
         }
-        .forgot-link {
-            float: right;
-            font-size: 13px;
-            color: #6c3eb6;
-            text-decoration: none;
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
             margin-bottom: 16px;
         }
+
+        .forgot-link,
+        .signup-link a,
+        .terms a {
+            color: #3a77ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
         .login-btn {
             width: 100%;
-            background: #cbb89d;
-            color: #fff;
+            background: #23e5db;
+            color: #002f34;
             border: none;
-            padding: 12px 0;
-            border-radius: 8px;
+            padding: 13px 0;
+            border-radius: 12px;
             font-size: 17px;
             font-weight: 700;
             cursor: pointer;
-            margin-bottom: 16px;
-            transition: background 0.2s;
         }
+
         .login-btn:hover {
-            background: #b09a7d;
+            background: #1fcfc6;
         }
+
         .or {
             text-align: center;
-            color: #888;
-            margin: 16px 0 12px 0;
+            color: #7a8d90;
+            margin: 18px 0 12px;
             font-size: 14px;
         }
+
         .social-btns {
             display: flex;
             gap: 10px;
             margin-bottom: 18px;
         }
+
         .social-btn {
             flex: 1;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 10px 0;
-            border: 1.5px solid #cbb89d;
-            border-radius: 6px;
+            padding: 11px 0;
+            border: 1px solid #d7e0e2;
+            border-radius: 10px;
             background: #fff;
-            color: #333;
-            font-size: 15px;
-            font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-        .social-btn.facebook {
-            background: #cbb89d;
-            color: #fff;
-        }
-        .social-btn.google i { color: #ea4335; }
-        .social-btn.facebook i { color: #fff; }
-        .social-btn.apple i { color: #333; }
-        .terms {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .terms a {
-            color: #6c3eb6;
-            text-decoration: underline;
-        }
-        .signup-link {
-            text-align: center;
-            font-size: 15px;
-            margin-top: 8px;
-        }
-        .signup-link a {
-            color: #6c3eb6;
-            text-decoration: underline;
             font-weight: 600;
         }
-        .side-image {
-            flex: 1;
-            min-width: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        .terms,
+        .signup-link,
+        .status {
+            text-align: center;
+            font-size: 14px;
+            color: #67797c;
         }
-        .side-image .cart-img {
-            width: 90%;
-            max-width: 260px;
-            filter: grayscale(0.3) brightness(0.97);
-        }
-        @media (max-width: 900px) {
-            .login-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-                padding: 32px 10px;
-            }
-            .side-image {
-                min-width: 0;
-                width: 100%;
-                justify-content: center;
-            }
+
+        .status {
+            min-height: 21px;
+            margin-top: 14px;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <form class="login-form">
+        <form class="login-form" id="loginForm">
             <div class="olx-logo"><span style="color:#002f34">O</span><span style="color:#23e5db">L</span><span style="color:#f9b233">X</span></div>
-            <div class="welcome">Welcome back!</div>
+            <div class="welcome">Welcome back</div>
+
             <div class="tab-group">
-                <button type="button" class="tab active">Login</button>
-                <button type="button" class="tab">Sign Up</button>
+                <span class="tab active">Login</span>
+                <a href="signup.html" class="tab">Sign Up</a>
             </div>
-            <div class="login-title">Login <span style="font-weight:400">to continue where you left off</span></div>
+
+            <div class="login-title">Continue with your account</div>
+
             <div class="input-group">
-                <label for="email">Email or Phone</label>
-                <input type="text" id="email" placeholder="Email or Phone" required>
+                <label for="email">Email or phone</label>
+                <input type="text" id="email" placeholder="Enter email or phone" required>
             </div>
+
             <div class="input-group password">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="button" class="toggle-password" tabindex="-1"><i class="fas fa-eye"></i></button>
+                <input type="password" id="password" placeholder="Enter password" required>
+                <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                    <i class="fas fa-eye"></i>
+                </button>
             </div>
-            <a href="#" class="forgot-link">Forgot password?</a>
+
+            <div class="actions">
+                <span></span>
+                <a href="signup.html" class="forgot-link">Need an account?</a>
+            </div>
+
             <button type="submit" class="login-btn">Login</button>
+
             <div class="or">OR</div>
+
             <div class="social-btns">
-                <button type="button" class="social-btn google"><i class="fab fa-google"></i>Google</button>
-                <button type="button" class="social-btn facebook"><i class="fab fa-facebook-f"></i>Facebook</button>
-                <button type="button" class="social-btn apple"><i class="fab fa-apple"></i>Apple</button>
+                <button type="button" class="social-btn" data-provider="Google"><i class="fab fa-google"></i>Google</button>
+                <button type="button" class="social-btn" data-provider="Facebook"><i class="fab fa-facebook-f"></i>Facebook</button>
+                <button type="button" class="social-btn" data-provider="Apple"><i class="fab fa-apple"></i>Apple</button>
             </div>
-            <div class="terms">By continuing, you agree to our <a href="#">Terms &amp; conditions</a> | <a href="#">Privacy</a></div>
-            <div class="signup-link">New here? <a href="signup.html">Sign up</a></div>
+
+            <div class="terms">By continuing, you agree to our <a href="landing.html">Terms</a> and <a href="landing.html">Privacy</a>.</div>
+            <div class="signup-link" style="margin-top:10px;">New here? <a href="signup.html">Create an account</a></div>
+            <div class="status" id="status"></div>
         </form>
-
     </div>
+
     <script>
-        // Toggle password visibility
-        document.querySelectorAll('.toggle-password').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const input = this.previousElementSibling;
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    this.innerHTML = '<i class="fas fa-eye-slash"></i>';
-                } else {
-                    input.type = 'password';
-                    this.innerHTML = '<i class="fas fa-eye"></i>';
-                }
+        const toggleButton = document.querySelector(".toggle-password");
+        const passwordInput = document.getElementById("password");
+        const loginForm = document.getElementById("loginForm");
+        const status = document.getElementById("status");
+
+        toggleButton.addEventListener("click", () => {
+            const isPassword = passwordInput.type === "password";
+            passwordInput.type = isPassword ? "text" : "password";
+            toggleButton.innerHTML = isPassword ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+        });
+
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = passwordInput.value;
+
+            if (!email || password.length < 8) {
+                status.textContent = "Enter a valid email or phone and a password with at least 8 characters.";
+                return;
+            }
+
+            const savedUser = JSON.parse(localStorage.getItem("olx_user") || "{}");
+            const name = savedUser.name || "OLX User";
+            const user = {
+                name,
+                email,
+                phone: savedUser.phone || "",
+                password
+            };
+
+            localStorage.setItem("olx_user", JSON.stringify(user));
+            status.textContent = "Login successful. Redirecting to profile...";
+            setTimeout(() => {
+                window.location.href = "profile.html";
+            }, 700);
+        });
+
+        document.querySelectorAll(".social-btn").forEach((button) => {
+            button.addEventListener("click", () => {
+                alert(button.dataset.provider + " login is a demo action in this project.");
             });
         });
 
-        // Sign Up tab button redirects to signup page
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                if (this.textContent.trim() === 'Sign Up') {
-                    window.location.href = 'signup.html';
-                }
-            });
-        });
-
-        // Social login buttons - show alert (requires backend OAuth setup for real functionality)
-        document.querySelectorAll('.social-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const provider = this.classList.contains('google') ? 'Google' : 
-                                 this.classList.contains('facebook') ? 'Facebook' : 'Apple';
-                alert(provider + ' login requires OAuth backend integration. This is a demo button.');
-            });
-        });
+        const savedUser = JSON.parse(localStorage.getItem("olx_user") || "{}");
+        if (savedUser.email) {
+            document.getElementById("email").value = savedUser.email;
+        }
     </script>
 </body>
 </html>

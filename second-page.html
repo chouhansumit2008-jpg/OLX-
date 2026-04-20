@@ -3,35 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OLX - Buy and Sell</title>
+    <title>OLX - Discover More</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --ink: #002f34;
+            --teal: #23e5db;
+            --teal-deep: #00a49f;
+            --blue: #3a77ff;
+            --sand: #fff6d9;
+            --paper: #ffffff;
+            --mist: #f4f7f8;
+            --line: #d8e1e3;
+            --text-soft: #5f7073;
+            --shadow: 0 18px 45px rgba(0, 47, 52, 0.1);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #f5f5f5;
+            background:
+                radial-gradient(circle at top left, rgba(35, 229, 219, 0.24), transparent 28%),
+                linear-gradient(180deg, #eef8f8 0%, #f7f7f7 42%, #eef4ff 100%);
+            color: var(--ink);
         }
 
-        /* Header Styles */
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
         .header {
-            background-color: #002f34;
+            background: var(--ink);
             padding: 15px 20px;
             display: flex;
             align-items: center;
             gap: 15px;
             flex-wrap: wrap;
             justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 20;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            cursor: pointer;
         }
 
         .logo-text {
@@ -42,37 +67,29 @@
         }
 
         .logo-text span {
-            color: #23e5db;
+            color: var(--teal);
         }
 
         .location-selector {
             display: flex;
             align-items: center;
-            background-color: #fff;
+            background: #fff;
             border-radius: 4px;
             padding: 8px 12px;
-            cursor: pointer;
             border: 2px solid transparent;
             transition: border-color 0.2s;
         }
 
         .location-selector:hover {
-            border-color: #23e5db;
+            border-color: var(--teal);
         }
 
         .location-selector i {
-            color: #002f34;
             margin-right: 8px;
         }
 
-        .location-selector span {
-            color: #002f34;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
         .search-container {
-            flex: 0.8;
+            flex: 0.9;
             display: flex;
             min-width: 250px;
             gap: 18px;
@@ -81,7 +98,7 @@
         .search-input-wrapper {
             flex: 1;
             display: flex;
-            background-color: #fff;
+            background: #fff;
             border-radius: 4px 0 0 4px;
             overflow: hidden;
         }
@@ -94,115 +111,33 @@
             outline: none;
         }
 
-        .search-input::placeholder {
-            color: #8a8a8a;
+        .search-button,
+        .camera-btn,
+        .cart-btn,
+        .sell-btn,
+        .explore-link,
+        .hero-button,
+        .mini-link,
+        .cta-button {
+            transition: transform 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
         }
 
         .search-button {
-            background-color: #002f34;
+            background: var(--ink);
             color: #fff;
             border: none;
             padding: 12px 20px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.2s;
         }
 
         .search-button:hover {
-            background-color: #00484f;
+            background: #00484f;
         }
 
-        .camera-btn {
-            background-color: transparent;
-            border: 2px solid #23e5db;
-            color: #23e5db;
-            padding: 12px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .camera-btn:hover {
-            background-color: #23e5db;
-            color: #002f34;
-        }
-
-        .sell-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background-color: #23e5db;
-            color: #002f34;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 24px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 700;
-            transition: all 0.2s;
-        }
-
-        .sell-btn:hover {
-            background-color: #1ac7c2;
-            transform: scale(1.02);
-        }
-
-        .sell-btn i {
-            font-size: 12px;
-        }
-
-        .login-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background-color: transparent;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 8px 16px;
-            border: 2px solid #fff;
-            border-radius: 4px;
-            transition: all 0.2s;
-            text-decoration: none;
-        }
-
-        .login-btn:hover {
-            background-color: #fff;
-            color: #002f34;
-        }
-
-        .profile-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 18px;
-            padding: 8px;
-            cursor: pointer;
-            transition: color 0.2s;
-            text-decoration: none;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-        }
-
-        .profile-btn:hover {
-            background-color: #fff;
-            color: #002f34;
-        }
-
+        .camera-btn,
         .cart-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: transparent;
+            background: transparent;
             border: 2px solid #fff;
             color: #fff;
             padding: 12px 16px;
@@ -210,25 +145,29 @@
             cursor: pointer;
             font-size: 18px;
             position: relative;
-            transition: all 0.2s;
+        }
+
+        .camera-btn {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        .camera-btn:hover {
+            background: var(--teal);
+            color: var(--ink);
         }
 
         .cart-btn:hover {
-            background-color: #fff;
-            color: #002f34;
+            background: #fff;
+            color: var(--ink);
         }
 
-        .cart-btn:hover .cart-count {
-            background-color: #23e5db;
-            color: #002f34;
-        }
-
-        .cart-btn .cart-count {
+        .cart-count {
             position: absolute;
             top: 2px;
             right: 2px;
-            background-color: #23e5db;
-            color: #002f34;
+            background: var(--teal);
+            color: var(--ink);
             font-size: 10px;
             font-weight: 700;
             padding: 1px 4px;
@@ -243,244 +182,498 @@
             gap: 15px;
         }
 
-        .header-actions {
+        .sell-btn {
             display: flex;
             align-items: center;
-            gap: 5px;
-        }
-
-        /* Section Styles */
-        .section {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-size: 22px;
+            gap: 8px;
+            background: var(--teal);
+            color: var(--ink);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 14px;
             font-weight: 700;
-            color: #002f34;
         }
 
-        .see-all {
-            color: #3a77ff;
-            text-decoration: none;
+        .sell-btn:hover,
+        .hero-button:hover,
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 47, 52, 0.14);
+        }
+
+        .login-btn,
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .login-btn {
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 4px;
             font-size: 14px;
             font-weight: 600;
         }
 
-        .see-all:hover {
-            text-decoration: underline;
-        }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .product-card {
+        .login-btn:hover,
+        .profile-btn:hover {
             background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
+            color: var(--ink);
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background: #f0f0f0;
-        }
-
-        .product-info {
-            padding: 12px;
-        }
-
-        .product-price {
+        .profile-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             font-size: 18px;
-            font-weight: 700;
-            color: #002f34;
-            margin-bottom: 6px;
         }
 
-        .product-title {
-            font-size: 13px;
-            color: #333;
-            margin-bottom: 6px;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+        .page-shell {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 26px 20px 48px;
+        }
+
+        .explore-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .explore-link {
+            background: rgba(255, 255, 255, 0.88);
+            color: var(--ink);
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 47, 52, 0.08);
+            box-shadow: 0 8px 18px rgba(0, 47, 52, 0.05);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .explore-link.active,
+        .explore-link:hover {
+            background: var(--ink);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .hero-panel,
+        .filters-panel,
+        .showcase,
+        .listing-card,
+        .insight-card,
+        .cta {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 47, 52, 0.08);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-panel {
+            border-radius: 34px;
+            padding: 34px;
+            position: relative;
             overflow: hidden;
+            background:
+                radial-gradient(circle at top right, rgba(58, 119, 255, 0.2), transparent 25%),
+                linear-gradient(135deg, #ffffff 0%, #effaf9 45%, #fff5dc 100%);
         }
 
-        .product-location {
-            font-size: 11px;
-            color: #888;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(0, 47, 52, 0.08);
+            color: var(--ink);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 4vw, 4.2rem);
+            line-height: 1;
+            max-width: 10ch;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-soft);
+            max-width: 54ch;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .hero-button {
+            padding: 14px 22px;
+            border-radius: 16px;
+            font-weight: 700;
+        }
+
+        .hero-button.primary,
+        .cta-button {
+            background: var(--ink);
+            color: #fff;
+        }
+
+        .hero-button.secondary {
+            background: #fff;
+            color: var(--ink);
+            border: 1px solid rgba(0, 47, 52, 0.12);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .stat {
+            padding: 18px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid rgba(0, 47, 52, 0.08);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.35rem;
+            margin-bottom: 4px;
+        }
+
+        .stat span {
+            color: var(--text-soft);
+            font-size: 0.92rem;
+        }
+
+        .hero-badge {
+            position: absolute;
+            right: 28px;
+            bottom: 30px;
+            background: var(--paper);
+            border-radius: 20px;
+            padding: 16px 18px;
+            min-width: 210px;
+            border: 1px solid rgba(0, 47, 52, 0.08);
+        }
+
+        .hero-badge small {
+            display: block;
+            color: var(--text-soft);
+            margin-bottom: 6px;
+        }
+
+        .hero-badge strong {
+            font-size: 1.1rem;
+        }
+
+        .filters-panel {
+            border-radius: 30px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(237, 247, 248, 0.98) 100%);
+        }
+
+        .filters-panel h2 {
+            font-size: 1.4rem;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .pill-row,
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pill,
+        .chip {
+            border-radius: 999px;
+            padding: 10px 14px;
+            background: #fff;
+            border: 1px solid var(--line);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .pill.active,
+        .chip.active {
+            background: var(--ink);
+            color: #fff;
+            border-color: var(--ink);
+        }
+
+        .mini-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 18px;
+            border-radius: 14px;
+            background: var(--teal);
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .mini-link:hover {
+            background: var(--teal-deep);
+            color: #fff;
+        }
+
+        .section {
+            margin-top: 32px;
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .section-head h2 {
+            font-size: 1.8rem;
+        }
+
+        .section-head p {
+            color: var(--text-soft);
+            max-width: 58ch;
+            line-height: 1.5;
+        }
+
+        .showcase {
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            background:
+                linear-gradient(135deg, rgba(0, 47, 52, 0.96) 0%, rgba(0, 79, 87, 0.92) 60%, rgba(58, 119, 255, 0.85) 100%);
+            color: #fff;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 22px;
+        }
+
+        .showcase-copy h3 {
+            font-size: 2rem;
+            margin: 12px 0;
+            max-width: 14ch;
+        }
+
+        .showcase-copy p {
+            color: rgba(255, 255, 255, 0.82);
+            line-height: 1.6;
+            max-width: 46ch;
+        }
+
+        .benefit-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 14px 16px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .benefit-item i {
+            color: var(--teal);
+            margin-top: 4px;
+        }
+
+        .benefit-item strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .product-stack {
+            display: grid;
+            gap: 16px;
+        }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .listing-card {
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--paper);
+        }
+
+        .listing-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .listing-body {
+            padding: 18px;
+        }
+
+        .listing-top {
             display: flex;
             align-items: center;
-            gap: 4px;
-        }
-
-        .product-date {
-            font-size: 11px;
-            color: #888;
-            margin-top: 6px;
-        }
-
-        /* Fresh Recommendations */
-        .fresh-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .fresh-card {
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-            transition: transform 0.2s;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .fresh-card:hover {
-            transform: scale(1.02);
-        }
-
-        .fresh-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .fresh-info {
-            padding: 10px;
-        }
-
-        .fresh-price {
-            font-size: 16px;
-            font-weight: 700;
-            color: #002f34;
-        }
-
-        .fresh-title {
-            font-size: 12px;
-            color: #555;
-            margin-top: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* Banner */
-        .banner {
-            background: linear-gradient(135deg, #002f34 0%, #00484f 100%);
-            padding: 40px 20px;
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .banner h2 {
-            color: #fff;
-            font-size: 28px;
+            justify-content: space-between;
+            gap: 10px;
             margin-bottom: 10px;
         }
 
-        .banner p {
-            color: #23e5db;
-            font-size: 16px;
-            margin-bottom: 20px;
+        .price {
+            font-size: 1.3rem;
+            font-weight: 800;
         }
 
-        .banner-btn {
-            display: inline-block;
-            background: #23e5db;
-            color: #002f34;
-            padding: 12px 30px;
-            border-radius: 24px;
-            text-decoration: none;
+        .tag {
+            border-radius: 999px;
+            padding: 7px 10px;
+            background: var(--sand);
+            font-size: 12px;
             font-weight: 700;
-            transition: transform 0.2s;
         }
 
-        .banner-btn:hover {
-            transform: scale(1.05);
+        .listing-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
         }
 
-        /* Footer */
-        .footer {
-            background: #002f34;
-            padding: 40px 20px 20px;
-            margin-top: 40px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .footer-section h3 {
-            color: #fff;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .footer-section a {
-            display: block;
-            color: #aaa;
-            text-decoration: none;
-            font-size: 13px;
-            margin-bottom: 8px;
-            transition: color 0.2s;
-        }
-
-        .footer-section a:hover {
-            color: #23e5db;
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 30px auto 0;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-        }
-
-        .social-links {
+        .meta,
+        .listing-foot {
             display: flex;
-            gap: 15px;
-            margin-top: 15px;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+            color: var(--text-soft);
+            font-size: 0.92rem;
         }
 
-        .social-links a {
-            color: #fff;
-            font-size: 20px;
+        .listing-foot {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid var(--line);
+            justify-content: space-between;
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .insight-card {
+            border-radius: 24px;
+            padding: 22px;
+        }
+
+        .insight-card i {
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: rgba(35, 229, 219, 0.14);
+            color: var(--ink);
+            margin-bottom: 14px;
+        }
+
+        .insight-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .insight-card p {
+            color: var(--text-soft);
+            line-height: 1.6;
+        }
+
+        .cta {
+            margin-top: 32px;
+            border-radius: 30px;
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            background:
+                linear-gradient(130deg, #fff5da 0%, #ffffff 50%, #eefbfa 100%);
+        }
+
+        .cta h2 {
+            font-size: 1.9rem;
+            margin-bottom: 8px;
+        }
+
+        .cta p {
+            color: var(--text-soft);
+            max-width: 50ch;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            padding: 14px 22px;
+            border-radius: 16px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1024px) {
+            .hero,
+            .showcase,
+            .listing-grid,
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-badge {
+                position: static;
+                margin-top: 20px;
+                width: fit-content;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -493,7 +686,9 @@
                 font-size: 28px;
             }
 
-            .location-selector span {
+            .location-selector span,
+            .login-btn span,
+            .sell-btn span {
                 display: none;
             }
 
@@ -503,38 +698,35 @@
                 min-width: 100%;
             }
 
-            .header-right {
-                gap: 5px;
+            .page-shell {
+                padding: 18px 14px 36px;
             }
 
-            .sell-btn {
-                padding: 8px 12px;
+            .hero-panel,
+            .filters-panel,
+            .showcase,
+            .listing-card,
+            .insight-card,
+            .cta {
+                border-radius: 22px;
             }
 
-            .sell-btn span {
-                display: none;
+            .hero-panel,
+            .filters-panel,
+            .showcase,
+            .cta {
+                padding: 22px;
             }
 
-            .login-btn {
-                padding: 8px 10px;
-            }
-
-            .login-btn span {
-                display: none;
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .section-head,
+            .cta {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <a href="first.html" class="logo">
             <div class="logo-text">OL<span>X</span></div>
@@ -547,17 +739,17 @@
 
         <div class="search-container">
             <div class="search-input-wrapper">
-                <input type="text" class="search-input" placeholder="Search for cars, phones, furniture, jobs and more...">
+                <input type="text" class="search-input" placeholder="Search for mobiles, cars, furniture and more...">
             </div>
-            <button class="search-button">
+            <button class="search-button" aria-label="Search">
                 <i class="fas fa-search"></i>
             </button>
-            <button class="camera-btn" title="Search with image">
+            <button class="camera-btn" title="Search with image" aria-label="Search with image">
                 <i class="fas fa-camera"></i>
             </button>
-            <button class="cart-btn" title="Cart">
+            <button class="cart-btn" title="Cart" aria-label="Cart">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
+                <span class="cart-count">3</span>
             </button>
         </div>
 
@@ -572,267 +764,260 @@
                 <span>Login</span>
             </a>
 
-            <div class="header-actions">
-                <a href="profile.html" class="profile-btn" title="Profile">
-                    <i class="fas fa-user"></i>
-                </a>
-            </div>
+            <a href="profile.html" class="profile-btn" title="Profile">
+                <i class="fas fa-user"></i>
+            </a>
         </div>
     </header>
 
-    <!-- Fresh Recommendations -->
-    <div class="section">
-        <div class="section-header">
-            <h2 class="section-title">Fresh Recommendations</h2>
-            <a href="products.html" class="see-all">See All</a>
-        </div>
-        <div class="fresh-grid">
-            <a href="product-detail.html" class="fresh-card">
-                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=200&fit=crop" alt="Headphones" class="fresh-image">
-                <div class="fresh-info">
-                    <div class="fresh-price">₹2,500</div>
-                    <div class="fresh-title">Sony Wireless Headphones</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="fresh-card">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&h=200&fit=crop" alt="Sneakers" class="fresh-image">
-                <div class="fresh-info">
-                    <div class="fresh-price">₹4,200</div>
-                    <div class="fresh-title">Nike Air Jordan - Size 9</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="fresh-card">
-                <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?w=300&h=200&fit=crop" alt="Watch" class="fresh-image">
-                <div class="fresh-info">
-                    <div class="fresh-price">₹12,000</div>
-                    <div class="fresh-title">Titan Smart Watch</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="fresh-card">
-                <img src="https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=300&h=200&fit=crop" alt="Laptop" class="fresh-image">
-                <div class="fresh-info">
-                    <div class="fresh-price">₹42,000</div>
-                    <div class="fresh-title">Dell Inspiron 15</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="fresh-card">
-                <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=300&h=200&fit=crop" alt="Shoes" class="fresh-image">
-                <div class="fresh-info">
-                    <div class="fresh-price">₹1,800</div>
-                    <div class="fresh-title">Adidas Running Shoes</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="fresh-card">
-                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=300&h=200&fit=crop" alt="Camera" class="fresh-image">
-                <div class="fresh-info">
-                    <div class="fresh-price">₹35,000</div>
-                    <div class="fresh-title">Canon DSLR Camera</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="fresh-card">
-                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&h=200&fit=crop" alt="Monitor" class="fresh-image">
-                <div class="fresh-info">
-                    <div class="fresh-price">₹15,000</div>
-                    <div class="fresh-title">LG 24 Inch Monitor</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="fresh-card">
-                <img src="https://images.unsplash.com/photo-1610438235354-a6ae5528385c?w=300&h=200&fit=crop" alt="Keyboard" class="fresh-image">
-                <div class="fresh-info">
-                    <div class="fresh-price">₹3,500</div>
-                    <div class="fresh-title">Mechanical Keyboard</div>
-                </div>
-            </a>
-        </div>
-    </div>
+    <main class="page-shell">
+        <nav class="explore-nav" aria-label="Explore sections">
+            <a href="first.html" class="explore-link">Home</a>
+            <a href="products.html" class="explore-link">All Products</a>
+            <a href="product-detail.html" class="explore-link">Featured Detail</a>
+            <a href="second-page.html" class="explore-link active">Discover More</a>
+            <a href="signup.html" class="explore-link">Join Now</a>
+        </nav>
 
-    <!-- Top Products -->
-    <div class="section">
-        <div class="section-header">
-            <h2 class="section-title">Top Products</h2>
-            <a href="products.html" class="see-all">See All</a>
-        </div>
-        <div class="product-grid">
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=300&fit=crop" alt="iPhone" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹52,000</div>
-                    <div class="product-title">iPhone 13 - 128GB - Blue</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Bangalore, Karnataka
-                    </div>
-                    <div class="product-date">Today</div>
+        <section class="hero">
+            <div class="hero-panel">
+                <div class="eyebrow">
+                    <i class="fas fa-bolt"></i>
+                    User-Focused Marketplace Page
                 </div>
-            </a>
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=400&h=300&fit=crop" alt="TV" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹28,000</div>
-                    <div class="product-title">Samsung 43 Inch LED TV</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Delhi, NCR
-                    </div>
-                    <div class="product-date">Yesterday</div>
+                <h1>Find what matters faster.</h1>
+                <p>
+                    This second page extends the main landing flow with sharper browsing options, trusted seller cues,
+                    and featured categories so users can keep exploring without feeling lost.
+                </p>
+                <div class="hero-actions">
+                    <a href="products.html" class="hero-button primary">Browse Products</a>
+                    <a href="signup.html" class="hero-button secondary">Create Account</a>
                 </div>
-            </a>
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=300&fit=crop" alt="Sneakers" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹5,500</div>
-                    <div class="product-title">Puma Sneakers - Size 10</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Mumbai, Maharashtra
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>1.2k+</strong>
+                        <span>Listings refreshed this week</span>
                     </div>
-                    <div class="product-date">2 days ago</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Microwave" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹8,000</div>
-                    <div class="product-title">LG Microwave Oven</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Chennai, Tamil Nadu
+                    <div class="stat">
+                        <strong>98%</strong>
+                        <span>Verified seller response rate</span>
                     </div>
-                    <div class="product-date">Today</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=400&h=300&fit=crop" alt="Bed" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹18,000</div>
-                    <div class="product-title">King Size Bed with Mattress</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Pune, Maharashtra
+                    <div class="stat">
+                        <strong>24 hrs</strong>
+                        <span>Average deal turnaround</span>
                     </div>
-                    <div class="product-date">3 days ago</div>
                 </div>
-            </a>
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop" alt="Sofa" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹22,000</div>
-                    <div class="product-title">L-Shaped Sofa - Brown</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Hyderabad, Telangana
-                    </div>
-                    <div class="product-date">Today</div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- Banner -->
-    <div class="banner">
-        <h2>Start Selling on OLX</h2>
-        <p>Reach millions of buyers across India</p>
-        <a href="products.html" class="banner-btn">Sell Now</a>
-    </div>
-
-    <!-- Cars Section -->
-    <div class="section">
-        <div class="section-header">
-            <h2 class="section-title">Cars & Bikes</h2>
-            <a href="products.html" class="see-all">See All</a>
-        </div>
-        <div class="product-grid">
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" alt="Car" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹5,50,000</div>
-                    <div class="product-title">Maruti Swift 2021 - 45000 km</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Mumbai, Maharashtra
-                    </div>
-                    <div class="product-date">Today</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1609630875171-1d9d2c0b27d0?w=400&h=300&fit=crop" alt="Bike" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹85,000</div>
-                    <div class="product-title">Royal Enfield Classic 350</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Pune, Maharashtra
-                    </div>
-                    <div class="product-date">Yesterday</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Car" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹3,20,000</div>
-                    <div class="product-title">Honda Amaze 2019</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Bangalore, Karnataka
-                    </div>
-                    <div class="product-date">2 days ago</div>
-                </div>
-            </a>
-            <a href="product-detail.html" class="product-card">
-                <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=400&h=300&fit=crop" alt="Bike" class="product-image">
-                <div class="product-info">
-                    <div class="product-price">₹1,20,000</div>
-                    <div class="product-title">KTM Duke 200</div>
-                    <div class="product-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Delhi, NCR
-                    </div>
-                    <div class="product-date">Today</div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Popular Searches</h3>
-                <a href="#">iPhone</a>
-                <a href="#">Cars</a>
-                <a href="#">Apartments</a>
-                <a href="#">Jobs</a>
-                <a href="#">Furniture</a>
-            </div>
-            <div class="footer-section">
-                <h3>Trending Locations</h3>
-                <a href="#">Mumbai</a>
-                <a href="#">Delhi</a>
-                <a href="#">Bangalore</a>
-                <a href="#">Chennai</a>
-                <a href="#">Hyderabad</a>
-            </div>
-            <div class="footer-section">
-                <h3>About OLX</h3>
-                <a href="#">About Us</a>
-                <a href="#">Careers</a>
-                <a href="#">Press</a>
-                <a href="#">Blog</a>
-                <a href="#">Contact Us</a>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                <div class="hero-badge">
+                    <small>Popular right now</small>
+                    <strong>Mobiles, furniture, cars and rentals</strong>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 OLX India. All rights reserved.</p>
-        </div>
-    </footer>
+
+            <aside class="filters-panel">
+                <div>
+                    <h2>Quick filters</h2>
+                </div>
+
+                <div class="filter-group">
+                    <label>Category</label>
+                    <div class="pill-row">
+                        <div class="pill active">All</div>
+                        <div class="pill">Mobiles</div>
+                        <div class="pill">Cars</div>
+                        <div class="pill">Furniture</div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Budget</label>
+                    <div class="pill-row">
+                        <div class="pill">Under &#8377;10k</div>
+                        <div class="pill active">&#8377;10k - &#8377;50k</div>
+                        <div class="pill">Premium</div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label>Buyer priorities</label>
+                    <div class="chip-row">
+                        <div class="chip active">Verified seller</div>
+                        <div class="chip">Fast delivery</div>
+                        <div class="chip">Best value</div>
+                        <div class="chip">Near me</div>
+                    </div>
+                </div>
+
+                <a href="products.html" class="mini-link">
+                    <i class="fas fa-compass"></i>
+                    Explore matched listings
+                </a>
+            </aside>
+        </section>
+
+        <section class="section">
+            <div class="showcase">
+                <div class="showcase-copy">
+                    <div class="eyebrow">Why this second page works</div>
+                    <h3>It keeps the user journey moving.</h3>
+                    <p>
+                        Instead of repeating the landing page, this screen adds stronger discovery blocks, category-based
+                        browsing, and practical trust signals that help users decide where to click next.
+                    </p>
+                    <div class="benefit-list">
+                        <div class="benefit-item">
+                            <i class="fas fa-layer-group"></i>
+                            <div>
+                                <strong>Clearer information hierarchy</strong>
+                                <span>Users get filters, featured deals and marketplace insights in one glance.</span>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-shield-heart"></i>
+                            <div>
+                                <strong>More trust at the browsing stage</strong>
+                                <span>Verified status and response speed reduce hesitation before the product click.</span>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-route"></i>
+                            <div>
+                                <strong>Better onward navigation</strong>
+                                <span>Every major block leads neatly into products, signup or detailed item pages.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-stack">
+                    <a href="product-detail.html" class="listing-card">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=900&h=700&fit=crop" alt="Phone listing">
+                        <div class="listing-body">
+                            <div class="listing-top">
+                                <div class="price">&#8377;42,500</div>
+                                <span class="tag">Trending</span>
+                            </div>
+                            <h3>iPhone 14 128GB with box and warranty</h3>
+                            <div class="meta">
+                                <span><i class="fas fa-location-dot"></i> Bangalore</span>
+                                <span><i class="fas fa-badge-check"></i> Verified seller</span>
+                            </div>
+                            <div class="listing-foot">
+                                <span>Posted today</span>
+                                <span>18 inquiries</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-head">
+                <div>
+                    <h2>Fresh picks for returning buyers</h2>
+                    <p>These cards give your second page stronger browsing depth while still staying connected to the main marketplace flow.</p>
+                </div>
+                <a href="products.html" class="mini-link">See all listings</a>
+            </div>
+
+            <div class="listing-grid">
+                <a href="product-detail.html" class="listing-card">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&h=700&fit=crop" alt="Sofa">
+                    <div class="listing-body">
+                        <div class="listing-top">
+                            <div class="price">&#8377;21,000</div>
+                            <span class="tag">Top deal</span>
+                        </div>
+                        <h3>L-shaped family sofa in excellent condition</h3>
+                        <div class="meta">
+                            <span><i class="fas fa-location-dot"></i> Hyderabad</span>
+                            <span><i class="fas fa-truck-fast"></i> Pickup today</span>
+                        </div>
+                        <div class="listing-foot">
+                            <span>Furniture</span>
+                            <span>4.9 seller rating</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="listing-card">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&h=700&fit=crop" alt="Car">
+                    <div class="listing-body">
+                        <div class="listing-top">
+                            <div class="price">&#8377;5,80,000</div>
+                            <span class="tag">Verified</span>
+                        </div>
+                        <h3>Maruti Baleno 2022 with service history</h3>
+                        <div class="meta">
+                            <span><i class="fas fa-location-dot"></i> Pune</span>
+                            <span><i class="fas fa-gauge-high"></i> 28,000 km</span>
+                        </div>
+                        <div class="listing-foot">
+                            <span>Cars</span>
+                            <span>Available now</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="product-detail.html" class="listing-card">
+                    <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=900&h=700&fit=crop" alt="Desk setup">
+                    <div class="listing-body">
+                        <div class="listing-top">
+                            <div class="price">&#8377;31,500</div>
+                            <span class="tag">Hot</span>
+                        </div>
+                        <h3>Work-from-home setup bundle with desk and monitor</h3>
+                        <div class="meta">
+                            <span><i class="fas fa-location-dot"></i> Chennai</span>
+                            <span><i class="fas fa-comments"></i> Quick replies</span>
+                        </div>
+                        <div class="listing-foot">
+                            <span>Electronics</span>
+                            <span>Posted 2 hours ago</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-head">
+                <div>
+                    <h2>Marketplace insights</h2>
+                    <p>This section adds the kind of user-supporting information a second page usually needs: safety, convenience and confidence.</p>
+                </div>
+            </div>
+
+            <div class="insight-grid">
+                <div class="insight-card">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Verified sellers first</h3>
+                    <p>Prioritizing verified profiles gives buyers a safer starting point and helps them shortlist listings faster.</p>
+                </div>
+                <div class="insight-card">
+                    <i class="fas fa-sliders"></i>
+                    <h3>Smarter browsing controls</h3>
+                    <p>Category and budget filters reduce clutter so users can move from inspiration to decision in fewer clicks.</p>
+                </div>
+                <div class="insight-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Support-led experience</h3>
+                    <p>Strong support messaging reassures users that buying, selling and account setup are all part of one smooth journey.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div>
+                <h2>Ready to turn visitors into active buyers?</h2>
+                <p>
+                    This page is now set up as a proper second step after the landing page. It gives users a reason to continue,
+                    browse deeper and sign up when they are ready.
+                </p>
+            </div>
+            <a href="signup.html" class="cta-button">Continue to Sign Up</a>
+        </section>
+    </main>
 </body>
 </html>
